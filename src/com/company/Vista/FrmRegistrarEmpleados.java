@@ -33,7 +33,7 @@ public class FrmRegistrarEmpleados {
     public JPanel getRootPanel() {
         return panelPrincipal;
     }
-
+    /*test comit*/
     public FrmRegistrarEmpleados(){
         listar();
 
