@@ -1,11 +1,8 @@
 package com.company.Vista;
 
-import com.company.Clases.Cliente;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
-import java.awt.*;
 import java.awt.event.*;
 
 public class FrmPedido {
@@ -19,8 +16,6 @@ public class FrmPedido {
     private JTextField txtCantidad;
     private JTextField txtPrecioTotal;
     private JButton registrarButton;
-    private JButton limpiarButton;
-    private JButton button3;
     private JTable TbPedido;
     private JCheckBox ChDelivery;
     public  JTextField txtCliente;
