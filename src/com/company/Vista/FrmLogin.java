@@ -24,7 +24,7 @@ public class FrmLogin {
     }
     public FrmLogin(){
 
-        imgLogin ing = new imgLogin();
+        //imgLogin ing = new imgLogin();
 
         this.setContentPane();
 
@@ -61,7 +61,16 @@ public class FrmLogin {
 
                 }
                 else {
+
                     JOptionPane.showMessageDialog( null, "Usuario y contraseña incorrecta");
+                    FrmMenu ui = new FrmMenu();
+                    JPanel jp = ui.getRootPanel();
+                    JFrame frame = new JFrame();
+                    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    frame.setContentPane(jp);
+                    frame.pack();
+                    frame.setLocationRelativeTo(null);
+                    frame.setVisible(false);
                 }
             }
         });
@@ -70,15 +79,6 @@ public class FrmLogin {
     private void setContentPane() {
     }
 
-    class imgLogin extends JPanel{
-        private Image imagen;
 
-        public void paint(Graphics e){
-            imagen = new ImageIcon(getClass().getResource("Login.png")).getImage();
-            e.drawImage(imagen,0,0,getWidth(),getHeight(), this);
-            setOpaque(false);
-            super.paint(e);
-        }
-    }
 
 }

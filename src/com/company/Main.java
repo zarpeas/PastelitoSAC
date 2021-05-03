@@ -1,9 +1,6 @@
 package com.company;
 
-import com.company.Vista.FrmListClinte;
-import com.company.Vista.FrmLogin;
-import com.company.Vista.FrmPedido;
-import com.company.Vista.FrmRegistrarEmpleados;
+import com.company.Vista.*;
 
 import javax.swing.*;
 
@@ -15,15 +12,12 @@ public class Main {
             public void run() {
                 //Login();
 
-                ListaCliente();
-                //Pedido();
+                //ListaCliente();
+                Pedido();
                //Registrar();
             }
 
-
-
         });
-
     }
 
     public static void Pedido(){
@@ -40,7 +34,7 @@ public class Main {
 
     public static void ListaCliente(){
 
-        FrmListClinte ui = new FrmListClinte();
+        FrmListaCliente ui = new FrmListaCliente();
         JPanel jp = ui.getRootPanel();
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -63,7 +57,8 @@ public class Main {
 
     public static void Registrar(){
 
-        FrmRegistrarEmpleados ui = new FrmRegistrarEmpleados();
+        FrmRegistrarCliente
+                ui = new FrmRegistrarCliente();
         JPanel jp = ui.getRootPanel();
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

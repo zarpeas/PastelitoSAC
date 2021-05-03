@@ -1,41 +1,39 @@
 package com.company.Vista;
 
-import com.company.Clases.Empleados;
-import com.toedter.calendar.JDateChooser;
+import com.company.Clases.Cliente;
 
 import javax.swing.*;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.event.*;
 import java.util.ArrayList;
-import java.util.Calendar;
 
-public class FrmRegistrarEmpleados {
+public class FrmRegistrarCliente {
     private JPanel panelPrincipal;
     private JTextField txtNombre;
-//    private JTextField txtApellido;
     private JTextField txtCelular;
     private JTextField txtDireccion;
     private JTextField txtCorreo;
     private JButton btnEditar;
     private JButton btnGuardar;
-    private JTable TbEmpleado;
+    private JTable
+            TbCliente;
     private JButton bntEliminar;
     private JTextField txtBuscar;
     private JButton btnBuscar;
-    ArrayList<Empleados> lista = new ArrayList<Empleados>();
-    DefaultTableModel tbmodel = (DefaultTableModel) TbEmpleado.getModel();
+    private JButton BtnLista;
+    ArrayList<Cliente>
+            lista = new ArrayList<Cliente>();
+    DefaultTableModel tbmodel = (DefaultTableModel) TbCliente.getModel();
     TableRowSorter<DefaultTableModel> tr;
 
-    String Nombre, Apellido, Direccion, Correo, Fecha;
+    String Nombre, Telefono, Correo , Direccion;
 
     public JPanel getRootPanel() {
         return panelPrincipal;
     }
 
-    public FrmRegistrarEmpleados(){
+    public FrmRegistrarCliente(){
 
         listar();
 
@@ -49,7 +47,6 @@ public class FrmRegistrarEmpleados {
                 //Arreglo
                 final Object[] row = new Object[5];
                 row[0] = txtNombre.getText();
-//                row[1] = txtApellido.getText();
                 row[1] = txtCelular.getText();
                 row[2] = txtCorreo.getText();
                 row[3] = txtDireccion.getText();
@@ -82,6 +79,8 @@ public class FrmRegistrarEmpleados {
                 }
                 else {
                     tbmodel.addRow(row);
+
+                    JOptionPane.showMessageDialog( null, "Se registro correctamente");
                     Limpiar();
                 }
 
@@ -93,30 +92,28 @@ public class FrmRegistrarEmpleados {
 
                 //tbmodel.addRow(dato);
 
-                //TbEmpleado.setModel(tbmodel);
+                //TbCliente.setModel(tbmodel);
 
 
 
-                /*
-                Empleados obj = new Empleados();
 
-                txtNombre.setText(obj.getNombres());
-                Apellido= txtApellido.getText();
+                /*Cliente obj = new Cliente();
+
+                Nombre = txtNombre.getText();
+                Telefono = txtCelular.getText();
                 Direccion= txtDireccion.getText();
                 Correo= txtCorreo.getText();
-                Fecha= txtFecha.getText();
 
                 //new Personal[]{obj}
-                Personal obj = new Personal();
+                //Cliente obj = new Cliente();
                         //{obj.setNombres(Nombre),obj.setApellidos(Apellido),obj.setDireccion(Direccion),obj.setCorreo(Correo),obj.setFechaNacimiento(Fecha)}
 
                 obj.setNombres(Nombre);
-                obj.setApellidos(Apellido);
+                obj.setCorreo(Telefono);
                 obj.setDireccion(Direccion);
                 obj.setCorreo(Correo);
-                obj.setFechaNacimiento(Fecha);
 
-                if (obj.getNombres().isEmpty() || obj.getApellidos().isEmpty()|| obj.getDireccion().isEmpty()|| obj.getCorreo().isEmpty()|| obj.getFechaNacimiento().isEmpty()){
+                if (obj.getNombres().isEmpty() || obj.getCorreo().isEmpty()|| obj.getDireccion().isEmpty()|| obj.getCorreo().isEmpty()) {
                     JOptionPane.showMessageDialog( null, "Los campos deden estar llenos");
                 }
                 else if (obj.equals(null)){
@@ -124,7 +121,6 @@ public class FrmRegistrarEmpleados {
                 }else{
                     JOptionPane.showMessageDialog( null, "Se registro correctamente");
                     lista.add(obj);
-                    //tbmodel.addRow();
                     listar();
                     Limpiar();
                 }*/
@@ -142,31 +138,31 @@ public class FrmRegistrarEmpleados {
             }
         });
 
-        //TbEmpleado.addMouseListener(new MouseEvent());
+        //TbCliente.addMouseListener(new MouseEvent());
 
-        DefaultTableModel model = (DefaultTableModel) TbEmpleado.getModel();
+        DefaultTableModel model = (DefaultTableModel) TbCliente.getModel();
 
-        TbEmpleado.addMouseListener(new MouseAdapter() {
+        TbCliente.addMouseListener(new MouseAdapter() {
 
             @Override
             public void mouseClicked(MouseEvent e) {
 
-                int i = TbEmpleado.getSelectedRow();
-                txtNombre.setText(TbEmpleado.getValueAt(i,0).toString());
-//                txtApellido.setText(TbEmpleado.getValueAt(i,1).toString());
-                txtCelular.setText(TbEmpleado.getValueAt(i,1).toString());
-                txtCorreo.setText(TbEmpleado.getValueAt(i,2).toString());
-                txtDireccion.setText(TbEmpleado.getValueAt(i,3).toString());
+                int i = TbCliente.getSelectedRow();
+                txtNombre.setText(TbCliente.getValueAt(i,0).toString());
+//                txtApellido.setText(TbCliente.getValueAt(i,1).toString());
+                txtCelular.setText(TbCliente.getValueAt(i,1).toString());
+                txtCorreo.setText(TbCliente.getValueAt(i,2).toString());
+                txtDireccion.setText(TbCliente.getValueAt(i,3).toString());
             }
         });
 
         bntEliminar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int dto = TbEmpleado.getSelectedRow();
+                int dto = TbCliente.getSelectedRow();
                 if (dto>=0){
                     tbmodel.removeRow(dto);
-                    JOptionPane.showMessageDialog( null, "Se elimino correctamente");
+                    JOptionPane.showMessageDialog( null, "Se elimino correctamente"+ dto);
                 }else {
                     JOptionPane.showMessageDialog( null, "Error al eliminar");
                 }
@@ -182,7 +178,7 @@ public class FrmRegistrarEmpleados {
                 //JOptionPane.showMessageDialog( null, "Demo");
                 //tr.setRowFilter(RowFilter.regexFilter(txtBuscar.getText(),1));
                 //tr= new TableRowSorter<>(tbmodel);
-                //TbEmpleado.setRowSorter(tr);
+                //TbCliente.setRowSorter(tr);
 
             }
         });
@@ -192,14 +188,11 @@ public class FrmRegistrarEmpleados {
                 Buscar();
             }
         });
-        txtCelular.addKeyListener(new KeyAdapter() {
+        BtnLista.addActionListener(new ActionListener() {
             @Override
-            public void keyPressed(KeyEvent e) {
-                System.out.println(e);
-                /*Calendar cal = Calendar.getInstance();
-                JDateChooser date = new JDateChooser(cal.getTime());
-                date.setDateFormatString("dd/MM/yyyy");
-                txtCelular.add(date);*/
+            public void actionPerformed(ActionEvent e) {
+                pasarData();
+
             }
         });
     }
@@ -223,10 +216,10 @@ public class FrmRegistrarEmpleados {
         Object[] column = {"Nombre","Celular","Correo","Dirección"};
         Object[] row =new Object[0];
         tbmodel.setColumnIdentifiers(column);
-        TbEmpleado.setModel(tbmodel);
-        TbEmpleado.setAutoCreateRowSorter(true);
+        TbCliente.setModel(tbmodel);
+        TbCliente.setAutoCreateRowSorter(true);
         tr = new  TableRowSorter<>(tbmodel);
-        TbEmpleado.setRowSorter(tr);
+        TbCliente.setRowSorter(tr);
         /*String matris [][] = new String[lista.size()][5];
 
         for (int i=0; i<lista.size(); i++){
@@ -237,7 +230,7 @@ public class FrmRegistrarEmpleados {
             matris[i][4]=lista.get(i).getCorreo();
         }
 
-        TbEmpleado.setModel(new DefaultTableModel(
+        TbCliente.setModel(new DefaultTableModel(
                 matris,
                 new String []{"Nombre","Apellido","Dirección","Correo","Fecha de Nacimiento"}
         ));*/
@@ -245,15 +238,15 @@ public class FrmRegistrarEmpleados {
 
     public void editar(){
 
-        int dto = TbEmpleado.getSelectedRow();
+        int dto = TbCliente.getSelectedRow();
 
         if ( dto >=0){
 
-            TbEmpleado.setValueAt(txtNombre.getText(), dto,0);
-//            TbEmpleado.setValueAt(txtApellido.getText(), dto,1);
-            TbEmpleado.setValueAt(txtCelular.getText(), dto,1);
-            TbEmpleado.setValueAt(txtCorreo.getText(), dto,2);
-            TbEmpleado.setValueAt(txtDireccion.getText(), dto,3);
+            TbCliente.setValueAt(txtNombre.getText(), dto,0);
+//            TbCliente.setValueAt(txtApellido.getText(), dto,1);
+            TbCliente.setValueAt(txtCelular.getText(), dto,1);
+            TbCliente.setValueAt(txtCorreo.getText(), dto,2);
+            TbCliente.setValueAt(txtDireccion.getText(), dto,3);
 
             JOptionPane.showMessageDialog( null, "Se Actulizo correctamente");
 
@@ -269,6 +262,32 @@ public class FrmRegistrarEmpleados {
         } catch (Exception e) {
             JOptionPane.showMessageDialog( null, "Error al Buscar");
         }
+
+    }
+
+    public void pasarData(){
+
+        FrmListaCliente ui = new FrmListaCliente();
+        JPanel jp = ui.getRootPanel();
+        JFrame frame = new JFrame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setContentPane(jp);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+
+        DefaultTableModel model=(DefaultTableModel)ui.TbListaCliente.getModel();
+
+        int rows = TbCliente.getRowCount();
+        for (int i=0; i<rows; i++) {
+            final Object[] row = new Object[4];
+            row[0]=TbCliente.getValueAt(i,0).toString();
+            row[1]=TbCliente.getValueAt(i,1).toString();
+            row[2]=TbCliente.getValueAt(i,2).toString();
+            row[3]=TbCliente.getValueAt(i,3).toString();
+            model.addRow(row);
+        }
+        ui.TbListaCliente.setModel(model);
 
     }
 
