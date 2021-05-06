@@ -2,9 +2,17 @@ package com.company.Clases;
 
 public class Cliente {
 
-    public String idCliente, nombreCompleto, celular, correo, direccion;
+    public String idCliente,
+            nombreCompleto,
+            celular,
+            correo,
+            direccion;
 
-    public Cliente(String idCliente, String nombreCompleto, String celular, String correo, String direccion) {
+    public Cliente(String idCliente,
+                   String nombreCompleto,
+                   String celular,
+                   String correo,
+                   String direccion) {
         this.idCliente = idCliente;
         this.nombreCompleto = nombreCompleto;
         this.celular = celular;

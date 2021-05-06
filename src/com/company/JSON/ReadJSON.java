@@ -20,7 +20,6 @@ public class ReadJSON {
 
     public ArrayList<Producto> getProductos(ArrayList<Producto> productos) {
         File input = new File(jsonPath);
-
         try {
             JsonElement fileElement = JsonParser.parseReader(new FileReader(input));
             JsonObject fileObject = fileElement.getAsJsonObject();
@@ -108,23 +107,29 @@ public class ReadJSON {
         return pedidos;
     }
 
-    public ArrayList<Pedido> ordenarPedidos(ArrayList<Pedido> pedidos){
-        for(int i = 0; i< pedidos.size(); i++){
-            for (int j = pedidos.size()-1; j > i; j--){
-                if(pedidos.get(i).getTotal() < pedidos.get(j).getTotal()){
+    public void cambiarPosicionElementos(ArrayList<Pedido> pedidos,
+                                                      int posicionInicial,
+                                                      int posicionMayor) {
+        Pedido temporal = pedidos.get(posicionInicial);
+        pedidos.set(posicionInicial, pedidos.get(posicionMayor));
+        pedidos.set(posicionMayor, temporal);
+    };
 
-                    Pedido temporal = pedidos.get(i);
-                    pedidos.set(i, pedidos.get(j));
-                    pedidos.set(j, temporal);
+    public ArrayList<Pedido> ordenarPedidos(ArrayList<Pedido> pedidos){
+        int posicionMayor = 0;
+
+        for(int i = 0; i< pedidos.size(); i++){
+            posicionMayor = i;
+
+            for (int j=i+1; j < pedidos.size(); j++){
+                if(pedidos.get(i).getTotal() < pedidos.get(j).getTotal()) {
+                    posicionMayor = j;
                 }
             }
+            cambiarPosicionElementos(pedidos, i, posicionMayor);
         }
-
         return pedidos;
     }
 
-    public static void main(String[] args){
-
-    }
 }
 
